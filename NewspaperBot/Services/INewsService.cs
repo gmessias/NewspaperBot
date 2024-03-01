@@ -1,6 +1,8 @@
-﻿namespace NewspaperBot.Services;
+﻿using Newtonsoft.Json.Linq;
+
+namespace NewspaperBot.Services;
 
 public interface INewsService
 {
-     string Teste();
+     Task<IEnumerable<JToken>> NewsHotCommand();
 }
