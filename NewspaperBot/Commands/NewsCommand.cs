@@ -4,15 +4,8 @@ using Newtonsoft.Json.Linq;
 
 namespace NewspaperBot.Commands;
 
-public class NewsCommand : ModuleBase<SocketCommandContext>
+public class NewsCommand(INewsService newsService) : ModuleBase<SocketCommandContext>
 {
-    private readonly INewsService _newsService;
-
-    public NewsCommand(INewsService newsService)
-    {
-        _newsService = newsService;
-    }
-    
     [Command("news")]
     [Summary("Returns the top 10 news")]
     public async Task ExecuteAsync([Remainder][Summary("A command")] string command)
@@ -22,7 +15,7 @@ public class NewsCommand : ModuleBase<SocketCommandContext>
         switch (command)
         {
             case "hot":
-                var enumerable = await _newsService.NewsHotCommand();
+                var enumerable = await newsService.NewsHotCommand();
                 ResultHot(enumerable);
                 break;
             case "One Service":
