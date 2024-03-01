@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using Discord.Commands;
 using Microsoft.Extensions.Configuration;
+using NewspaperBot.Services;
 using Newtonsoft.Json.Linq;
 
 namespace NewspaperBot.Commands;
@@ -8,21 +9,24 @@ namespace NewspaperBot.Commands;
 public class NewsCommand : ModuleBase<SocketCommandContext>
 {
     private readonly HttpClient _httpClient;
-    //private const string NewsApiKey = "cba4bdbd69af456bab0baf5bdc31d92a";
     private readonly IConfiguration _configuration;
+    private readonly INewsService _newsService;
 
-    public NewsCommand(IConfiguration configuration)
+    public NewsCommand(IConfiguration configuration, INewsService newsService)
     {
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "NewspaperBot");
         _configuration = configuration;
+        _newsService = newsService;
     }
     
     [Command("news")]
     [Summary("Returns the top 10 news")]
     public async Task ExecuteAsync([Remainder][Summary("A command")] string command)
     {
+        await ReplyAsync(_newsService.Teste());
+        
         if (string.IsNullOrEmpty(command) || command != "hot")
         {
             await ReplyAsync("Usage: !news hot");

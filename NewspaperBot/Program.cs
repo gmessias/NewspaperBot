@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NewspaperBot.Services;
 
 namespace NewspaperBot;
 
@@ -24,6 +25,7 @@ internal class Program
             })
             .AddSingleton<IConfiguration>(configuration)
             .AddScoped<IBot, Bot>()
+            .AddSingleton<INewsService, NewsService>()
             .BuildServiceProvider();
 
         try
