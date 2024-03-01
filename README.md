@@ -4,7 +4,7 @@
 
 ### Commands:
 
+Returns the top 10 news: 
 ```
 !news hot
 ```
-Returns the top 10 news </br>
