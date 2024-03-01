@@ -44,7 +44,10 @@ public class NewsCommand : ModuleBase<SocketCommandContext>
         {
             foreach (var article in articles)
             {
-                await ReplyAsync($"{article["title"]}: {article["url"]}");
+                await ReplyAsync($"**Title**: {article["title"]} \n" +
+                                 $"**Url**: [Click here]({article["url"]}) \n" +
+                                 $"**Author**: {article["author"]} \n" +
+                                 $"**Publish At**: {article["publishedAt"]}");
             }
         }
     }
