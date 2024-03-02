@@ -6,5 +6,5 @@ public interface INewsService
 {
      Task<IEnumerable<JToken>> NewsHotCommand();
      Task<IEnumerable<JToken>> NewsTopCommand(string[] instructions);
-     Task<IEnumerable<JToken>> NewsEveryCommand(string[] instructions);
+     Task<IEnumerable<JToken>> NewsEverythingCommand(string[] instructions);
 }

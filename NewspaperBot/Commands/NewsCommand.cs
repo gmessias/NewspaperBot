@@ -30,10 +30,10 @@ public class NewsCommand(INewsService newsService) : ModuleBase<SocketCommandCon
                     ResultDefault(topEnumerable);
                 }
                 break;
-            case "every":
+            case "everything":
                 if (haveArguments)
                 {
-                    var everyEnumerable = await newsService.NewsEveryCommand(commandSplit);
+                    var everyEnumerable = await newsService.NewsEverythingCommand(commandSplit);
                     ResultDefault(everyEnumerable);
                 }
                 break;

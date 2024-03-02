@@ -47,7 +47,7 @@ public class NewsService : INewsService
         return articles ?? Enumerable.Empty<JToken>();
     }
     
-    public async Task<IEnumerable<JToken>> NewsEveryCommand(string[] instructions)
+    public async Task<IEnumerable<JToken>> NewsEverythingCommand(string[] instructions)
     {
         var apiKey = _configuration["NewsApiKey"];
         if (string.IsNullOrEmpty(apiKey))
