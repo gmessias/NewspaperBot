@@ -12,19 +12,47 @@ public class NewsCommand(INewsService newsService) : ModuleBase<SocketCommandCon
     {
         if (string.IsNullOrEmpty(command)) await ReplyAsync("Please enter the type of news command");
 
-        switch (command)
+        string[] commandSplit = command.Split(' ');
+        string subcommand = commandSplit[0];
+
+        bool haveArguments = commandSplit.Length > 1;
+        
+        switch (subcommand)
         {
             case "hot":
-                var enumerable = await newsService.NewsHotCommand();
-                ResultHot(enumerable);
+                var hotEnumerable = await newsService.NewsHotCommand();
+                ResultHot(hotEnumerable);
                 break;
-            case "One Service":
+            case "top":
+                if (haveArguments)
+                {
+                    var topEnumerable = await newsService.NewsTopCommand(commandSplit);
+                    ResultDefault(topEnumerable);
+                }
                 break;
-            case "Another Service":
+            case "every":
+                if (haveArguments)
+                {
+                    var everyEnumerable = await newsService.NewsEveryCommand(commandSplit);
+                    ResultDefault(everyEnumerable);
+                }
                 break;
             default:
                 await ReplyAsync("This type of command was not recognized");
                 break;
+        }
+    }
+    
+    private async void ResultDefault(IEnumerable<JToken>? enumerable)
+    {
+        var articles = enumerable!.ToList();
+        if (articles.Any())
+        {
+            ReplyAsyncArticles(articles);
+        }
+        else
+        {
+            await ReplyAsync("Unable to execute the command");
         }
     }
 
