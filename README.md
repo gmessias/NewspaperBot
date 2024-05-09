@@ -1,4 +1,10 @@
-## Discord BOT
+# Newspaper - Discord BOT
+
+## Discord bot for news and reports. I'm using the News API, which is public.
+
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
 
 ### Using News API
 
